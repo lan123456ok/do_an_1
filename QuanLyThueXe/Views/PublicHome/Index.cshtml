@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+}
+
+<div class="hero-wrap js-fullheight" style="background-image: url('/Content/images/banner.jpg'); height: 60px ">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+            <div class="col-md-9 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+                <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong> <br></strong> Chào mừng bạn đến với</h1>
+                <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Dịch vụ cho thuê xe của chúng tôi</p>
+                <div class="block-17 my-4">
+                    <form action="/PublicCar/Search" method="post" class="d-block d-flex">
+                        <div class="fields d-block d-flex">
+                            <div class="textfield-search one-third">
+                                <input type="text" name="name" class="form-control" placeholder="Ví dụ: Xe ab">
+                            </div>
+                            <div class="select-wrap one-third">
+                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                <select name="idType" id="" class="form-control" placeholder="Tên xe">
+                                    <option value="">Loại xe</option>
+                                    <option value="1">Xe ô tô</option>
+                                    <option value="2">Xe máy</option>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="submit" class="search-submit btn btn-primary" value="Tìm kiếm">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-start mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate">
+                <h2 class="mb-4" style="text-transform:uppercase ;font-weight:600;">Xe ô tô trong hệ thống</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in ViewBag.ListOto)
+            {
+                <div class=" col-md-4 col-lg-4 ">
+                    <div class="destination" style="border:1px solid #ccc;">
+                       
+                        <a href="/PublicCar/DetailCar/@item.vehicle_id"> <img width="100%;" style="height:auto;" class="img img-2 d-flex justify-content-center align-items-center" src="/Content/images/@item.image"></a>
+                        <div class="text p-3">
+                            <div class="d-flex">
+                                <div class="one">
+                                    <h3><a href="/PublicCar/DetailCar/@item.vehicle_id">@item.name</a></h3>
+                   
+                                </div>
+                                @*<div class="two" style="margin-right : 100px" >
+                                    <span class="price" style="margin-right : 100px">@item.price VNĐ</span>
+                                </div>*@
+                            </div>
+                            @*   <p>Far far away, behind the word mountains, far from the countries</p>*@
+                            <p class="days"><span style="font-size:120%">@item.price VNĐ / 1 ngày</span></p>
+                            <hr>
+                            <p class="bottom-area d-flex">
+                                <span>Số lượng : @item.quantity </span>
+                                <span class="ml-auto" ><a href="/PublicCar/DetailCar/@item.vehicle_id" style="padding:10px">Xem chi tiết</a></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section" style="margin-top : -80px !important">
+    <div class="container">
+        <div class="row justify-content-start mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate">
+                <h2 class="mb-4" style="text-transform:uppercase ;font-weight:600;">Xe máy trong hệ thống</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in ViewBag.ListXeMay)
+            {
+            <div class="col-md-4 col-lg-4" style="">
+                <div class="destination" style="border:1px solid #ccc;">
+                    @*<a href="/PublicCar/DetailCar/@item.vehicle_id" width="380px" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(/Content/images/@item.image);">
+                <div class="icon d-flex justify-content-center align-items-center">
+                    <span class="icon-search2"></span>
+                </div>
+            </a>*@
+                    <a href="/PublicCar/DetailCar/@item.vehicle_id"> <img width="100%" style="height:auto" class="img img-2 d-flex justify-content-center align-items-center" src="/Content/images/@item.image"></a>
+                    <div class="text p-3">
+                        <div class="d-flex">
+                            <div class="one">
+                                <h3><a href="/PublicCar/DetailCar/@item.vehicle_id">@item.name</a></h3>
+         
+                            </div>
+                            @*<div class="two" style="margin-right : 100px" >
+                        <span class="price" style="margin-right : 100px">@item.price VNĐ</span>
+                    </div>*@
+                        </div>
+                        @*   <p>Far far away, behind the word mountains, far from the countries</p>*@
+                        <p class="days"><span style="font-size:120%">@item.price VNĐ / 1 ngày</span></p>
+                        <hr>
+                        <p class="bottom-area d-flex">
+                            <span>Số lượng : @item.quantity </span>
+                            <span class="ml-auto"><a href="/PublicCar/DetailCar/@item.vehicle_id" style="padding:10px;">Xem chi tiết</a></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+
